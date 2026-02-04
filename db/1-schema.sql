@@ -26,15 +26,15 @@ CREATE TABLE estudiantes (
 
 CREATE TABLE maestros (
     id SERIAL PRIMARY KEY,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    nombre VARCHAR(100) NOT NULL
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    correo VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE cursos (
     id SERIAL PRIMARY KEY,
-    codigo VARCHAR(100) NOT NULL UNIQUE,
+    codigo VARCHAR(5) NOT NULL UNIQUE, --supongo que una abreviacion del nombre (como AWOS para esta materia)
     nombre VARCHAR(100) NOT NULL,
-    creditos INTEGER NOT NULL
+    creditos INTEGER NOT NULL --no se como medir esto
 );
 
 CREATE TABLE grupos (
