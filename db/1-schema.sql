@@ -8,15 +8,19 @@
 
 -- Limpiar tablas si existen (útil para desarrollo)
 -- CUIDADO: Esto borra todos los datos
-DROP TABLE IF EXISTS tabla_relacion CASCADE;
-DROP TABLE IF EXISTS tabla_hija CASCADE;
-DROP TABLE IF EXISTS tabla_padre CASCADE;
+DROP TABLE IF EXISTS estudiantes CASCADE; --no se que hace el cascade ya se me olvido ahi despues se cambia
+DROP TABLE IF EXISTS maestros CASCADE;
+DROP TABLE IF EXISTS cursos CASCADE;
+DROP TABLE IF EXISTS grupos CASCADE;
+DROP TABLE IF EXISTS inscripciones CASCADE;
+DROP TABLE IF EXISTS calificaciones CASCADE;
+DROP TABLE IF EXISTS asistencia CASCADE;
 
 CREATE TABLE estudiantes (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL UNIQUE,
     correo VARCHAR(100) NOT NULL UNIQUE,
-    programa VARCHAR(100) NOT NULL, --como la carrera
+    programa VARCHAR(100) NOT NULL, --como el nombre de la carrera
     anno_inscripcion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -70,7 +74,7 @@ CREATE TABLE asistencia (
 -- ============================================
 
 -- Índice para búsquedas por usuario en órdenes
-CREATE INDEX idx_ordenes_usuario_id ON ordenes(usuario_id);
+CREATE INDEX idx_ordenes_usuario_id ON ordenes(usuario_id); --ahi despues lo cambio
 
 -- Índice para búsquedas por categoría en productos
 CREATE INDEX idx_productos_categoria_id ON productos(categoria_id);
@@ -82,11 +86,13 @@ CREATE INDEX idx_ordenes_status ON ordenes(status);
 -- COMENTARIOS DE TABLAS (documentación en BD)
 -- ============================================
 
-COMMENT ON TABLE categorias IS 'Catálogo de categorías de productos';
-COMMENT ON TABLE usuarios IS 'Usuarios del sistema';
-COMMENT ON TABLE productos IS 'Catálogo de productos disponibles';
-COMMENT ON TABLE ordenes IS 'Órdenes/pedidos de los usuarios';
-COMMENT ON TABLE orden_detalles IS 'Detalle de productos por orden';
+COMMENT ON TABLE estudiantes IS 'Estudiantes en la escuela';
+COMMENT ON TABLE maestros IS 'Docentes en la escuela';
+COMMENT ON TABLE cursos IS 'Las materias que existen';
+COMMENT ON TABLE grupos IS 'Grupos que existen, de qué materia son y qué docente la da';
+COMMENT ON TABLE inscripciones IS 'Alumnos inscritos a un grupo y la fecha en la que se inscribieron';
+COMMENT ON TABLE calificaciones IS 'Calificación de cada alumno por parcial, toma la inscripción y no el alumno en sí';
+COMMENT ON TABLE asistencia IS 'Si un estudiante asistio a una clase en un día dado';
 
 -- ============================================
 -- FIN DEL SCHEMA
