@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: postgres_container
+    container_name: examen_AWOS_container
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER_ADMIN}
@@ -26,7 +26,7 @@ services:
     ports:
       - "3000:3000"
     env_file:
-      - .env
+      - .env.example
     depends_on:
       - postgres
 volumes:
