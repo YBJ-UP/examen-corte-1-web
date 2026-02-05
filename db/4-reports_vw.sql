@@ -78,6 +78,7 @@ CREATE OR REPLACE VIEW vw_tablero_estudiantes AS
     JOIN inscripciones i ON e.id = i.id_estudiante
     JOIN calificaciones ca ON ca.id_inscripcion = i.id
     JOIN grupos g ON g.id = i.id_grupo
-    GROUP BY e.nombre, e.programa, g.periodo;
+    GROUP BY e.nombre, e.programa, g.periodo
+    ORDER BY g.periodo DESC;
 
 SELECT * FROM vw_tablero_estudiantes;
