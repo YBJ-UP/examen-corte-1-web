@@ -14,6 +14,16 @@ CREATE OR REPLACE VIEW vw_rendimiento_curso AS
     JOIN inscripciones i ON i.id_grupo = g.id
     JOIN calificaciones ca ON ca.id_inscripcion = i.id
     JOIN estudiantes e ON e.id = i.id_estudiante
-    GROUP BY c.nombre, g.periodo, e.programa;
+    GROUP BY c.nombre, g.periodo, e.programa
+    ORDER BY e.programa;
+
+--prueba
+SELECT * FROM vw_rendimiento_curso;
 
 -- toma curso y periodo, programa pq lo pide y calificaciones pq la view es de calificaciones, las inscripciones pq las calificaciones van ligadas a esas
+
+--VIEW 2
+--CARGA DE DOCENTE + PERIODO
+--ATRIBUTOS grupos, alumnos_totales (supongo que por periodo), promedio_general
+--DEBE DE TENER UN HAVING
+
