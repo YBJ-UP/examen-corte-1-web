@@ -26,4 +26,18 @@ SELECT * FROM vw_rendimiento_curso;
 --CARGA DE DOCENTE + PERIODO
 --ATRIBUTOS grupos, alumnos_totales (supongo que por periodo), promedio_general
 --DEBE DE TENER UN HAVING
+CREATE OR REPLACE VIEW vw_carga_maestro AS
+    SELECT
+        m.nombre AS maestro,
+        g.periodo,
+        COUNT(DISTINCT g.id) AS grupos,
+        COUNT(DISTINCT i.id) AS alumnos,
+        ROUND(AVG((ca.parcial_1 + ca.parcial_2 + ca.final)/3.0),2) as promedio_general
+    FROM maestros m
+    JOIN grupos g ON g.id_maestro = m.id
+    JOIN inscripciones i ON i.id_grupo = g.id
+    JOIN calificaciones ca ON ca.id_inscripcion = i.id
+    GROUP BY m.nombre, g.periodo
+    ORDER BY m.nombre;
 
+SELECT * FROM vw_carga_maestro;
