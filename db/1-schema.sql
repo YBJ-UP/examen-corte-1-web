@@ -34,7 +34,7 @@ CREATE TABLE cursos (
     id SERIAL PRIMARY KEY,
     codigo VARCHAR(5) NOT NULL UNIQUE, --supongo que una abreviacion del nombre (como AWOS para esta materia)
     nombre VARCHAR(100) NOT NULL,
-    creditos INTEGER NOT NULL --no se como medir esto
+    creditos INTEGER NOT NULL CHECK (creditos > 0) --no se como medir esto
 );
 
 CREATE TABLE grupos (
