@@ -59,7 +59,7 @@ CREATE TABLE calificaciones ( --calificaciones de 0 a 100
     final INTEGER CHECK (final >= 0 AND final <= 100) DEFAULT 0
 );
 
-CREATE TABLE asistencia (
+CREATE TABLE asistencias (
     id SERIAL PRIMARY KEY,
     id_inscripcion INTEGER NOT NULL REFERENCES inscripciones(id),
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
