@@ -55,7 +55,7 @@ SELECT * FROM vw_carga_maestro;
 CREATE OR REPLACE VIEW vw_asistencia_por_grupo AS
     SELECT
         g.id as grupo,
-        COALESCE( ROUND( AVG( CASE WHEN a.asistencia=TRUE THEN 1 ELSE 0 END ), 2 ), 0 ) as promedio_asistencias
+        COALESCE( ROUND( AVG( CASE WHEN a.asistencia=TRUE THEN 1 ELSE 0 END ), 2 )*100, 0 ) as promedio_asistencias
     FROM grupos g
     JOIN inscripciones i ON i.id_grupo = g.id
     JOIN asistencias a ON a.id_inscripcion = i.id
