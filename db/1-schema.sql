@@ -73,14 +73,14 @@ CREATE TABLE asistencia (
 -- ÍNDICES (para optimizar consultas)
 -- ============================================
 
--- Índice para búsquedas por usuario en órdenes
-CREATE INDEX idx_ordenes_usuario_id ON ordenes(usuario_id); --ahi despues lo cambio
+--Índice para búsquedas de inscripciones por estudiante
+CREATE INDEX idx_inscripciones_estudiante ON inscripciones(id_estudiante);
 
--- Índice para búsquedas por categoría en productos
-CREATE INDEX idx_productos_categoria_id ON productos(categoria_id);
+-- Índice para búsquedas de inscripciones por grupo
+CREATE INDEX idx_inscripciones_grupo ON inscripciones(id_grupo);
 
--- Índice para búsquedas por status de orden
-CREATE INDEX idx_ordenes_status ON ordenes(status);
+--Índice para búsquedas de cursos por maestro
+CREATE INDEX idx_cursos_maestro ON cursos(id_maestro);
 
 -- ============================================
 -- COMENTARIOS DE TABLAS (documentación en BD)
