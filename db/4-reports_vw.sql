@@ -62,4 +62,21 @@ CREATE OR REPLACE VIEW vw_asistencia_por_grupo AS
     GROUP BY g.id
     ORDER BY g.id;
 
-SELECT * FROM vw_asistencia_por_grupo
+SELECT * FROM vw_asistencia_por_grupo;
+
+--VIEW 5
+--RANKING POR PROGRAMA Y PERIODO (supongo que de calificaciones)
+--DEBE DE TENER RANK() o alguna cosa asi y algo que se llama PARTITION BY creo
+CREATE OR REPLACE VIEW vw_tablero_estudiantes AS
+    SELECT
+        e.nombre AS estudiante,
+        e.programa,
+        g.periodo,
+        RANK() OVER ( ROUND( (ca.parcial_1 + ca.parcial_2 + ca.final)/3.0 ,2) ) AS lugar
+    FROM estudiantes e
+    JOIN inscripciones i ON e.id = i.id_estudiante
+    JOIN calificaciones ca ON ca.id_inscripcion = i.id
+    JOIN grupos g ON g.id = i.id_grupo
+    GROUP BY e.nombre, e.programa, g.periodo;
+
+SELECT * FROM vw_tablero_estudiantes;
