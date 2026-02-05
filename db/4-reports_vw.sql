@@ -10,7 +10,7 @@ CREATE OR REPLACE VIEW vw_rendimiento_curso AS
         ROUND((ca.parcial_1 + ca.parcial_2 + ca.final)/3.0,2) AS promedio,
         COUNT(CASE WHEN ((ca.parcial_1 + ca.parcial_2 + ca.final)/3.0 > 70) THEN 1 END) AS reprobados
     FROM cursos c
-    JOIN grupos g ON c.id = g.id_grupo
+    JOIN grupos g ON c.id_grupo = g.id
     JOIN inscripciones i ON i.id_grupo = g.id
     JOIN calificaciones ca ON ca.id_inscripcion = i.id
     JOIN estudiantes e ON e.id = i.id_estudiante
