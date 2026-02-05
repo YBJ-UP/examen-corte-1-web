@@ -1,25 +1,25 @@
 INSERT INTO estudiantes (nombre, correo, programa) VALUES
-    ("Yael Betanzos Jiménez", "yael@gmail.com", "Sofsgüers"), --1
-    ("Fulano de Fulán", "fulano@gmail.com", "Lage"), --2
-    ("Juán Juán Juárez Jiménez", "juan@gmail.com", "Petro"), --3
-    ("Pablo Petanzos Pascal", "pablo@gmail.com", "Ambiental"), --4
-    ("Federico Fazbear", "federico@gmail.com", "Electricista"); --5
+    ('Yael Betanzos Jiménez', 'yael@gmail.com', 'Sofsgüers'), --1
+    ('Fulano de Fulán', 'fulano@gmail.com', 'Lage'), --2
+    ('Juán Juán Juárez Jiménez', 'juan@gmail.com', 'Petro'), --3
+    ('Pablo Petanzos Pascal', 'pablo@gmail.com', 'Ambiental'), --4
+    ('Federico Fazbear', 'federico@gmail.com', 'Electricista'); --5
 
 INSERT INTO maestros (nombre, correo) VALUES
-    ("Profe 1", "one@gmail.com"), --1
-    ("Profe 2", "zwei@gmail.com"), --2
-    ("Profe 3", "tres@gmail.com"), --3
-    ("Profe 4", "quattro@gmail.com"), --4
-    ("Profe 5", "pente@gmail.com"); --5
+    ('Profe 1', 'one@gmail.com'), --1
+    ('Profe 2', 'zwei@gmail.com'), --2
+    ('Profe 3', 'tres@gmail.com'), --3
+    ('Profe 4', 'quattro@gmail.com'), --4
+    ('Profe 5', 'pente@gmail.com'); --5
 
 INSERT INTO cursos (codigo, nombre, creditos) VALUES
-    ("AWOS", "Aplicaciones Web Orientadas a Servicios", 40), --1
-    ("EDD", "Estructura De Datos", 40), --2
-    ("BD", "Bases de Datos", 40), --3
-    ("I", "Inglés", 20), --4
-    ("ED", "Ecuaciones diferenciales", 10), --5
-    ("OTHR", "Materia x", 10), --6
-    ("OTR", "Materia y", 10); --7
+    ('AWOS', 'Aplicaciones Web Orientadas a Servicios', 40), --1
+    ('EDD', 'Estructura De Datos', 40), --2
+    ('BD', 'Bases de Datos', 40), --3
+    ('I', 'Inglés', 20), --4
+    ('ED', 'Ecuaciones diferenciales', 10), --5
+    ('OTHR', 'Materia x', 10), --6
+    ('OTR', 'Materia y', 10); --7
 
 INSERT INTO grupos (id_curso, id_maestro, periodo) VALUES
     (1, 1, 5), --awos 1
