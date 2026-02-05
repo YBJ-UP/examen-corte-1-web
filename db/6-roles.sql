@@ -9,4 +9,5 @@ NOCREATEROLE
 INHERIT;
 
 GRANT USAGE ON SCHEMA public TO app;
+GRANT SELECT ON vw_rendimiento_curso TO app;
 -- dar permiso para los reportes (cuando los haga)
