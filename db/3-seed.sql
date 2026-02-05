@@ -68,7 +68,7 @@ INSERT INTO calificaciones (id_inscripcion, parcial_1, parcial_2, final) VALUES
     (16, 68, 78, 68), --16
     (17, 78, 98, 85); --17
 
-INSERT INTO asistencia (id_inscripcion, fecha, asistencia) VALUES
+INSERT INTO asistencias (id_inscripcion, fecha, asistencia) VALUES
     (1, '2024-02-01', TRUE),
     (1, '2024-02-02', TRUE),
     (1, '2024-02-03', FALSE),
