@@ -9,4 +9,4 @@ CREATE INDEX idx_inscripciones_estudiante ON inscripciones(id_estudiante);
 CREATE INDEX idx_inscripciones_grupo ON inscripciones(id_grupo);
 
 --Índice para búsquedas de cursos por maestro
-CREATE INDEX idx_cursos_maestro ON cursos(id_maestro);
+CREATE INDEX idx_grupos_maestro ON grupos(id_maestro);
