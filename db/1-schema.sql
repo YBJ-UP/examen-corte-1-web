@@ -76,7 +76,7 @@ COMMENT ON TABLE cursos IS 'Las materias que existen';
 COMMENT ON TABLE grupos IS 'Grupos que existen, de qué materia son y qué docente la da';
 COMMENT ON TABLE inscripciones IS 'Alumnos inscritos a un grupo y la fecha en la que se inscribieron';
 COMMENT ON TABLE calificaciones IS 'Calificación de cada alumno por parcial, toma la inscripción y no el alumno en sí';
-COMMENT ON TABLE asistencia IS 'Si un estudiante asistio a una clase en un día dado';
+COMMENT ON TABLE asistencias IS 'Si un estudiante asistio a una clase en un día dado';
 
 -- ============================================
 -- FIN DEL SCHEMA
