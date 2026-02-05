@@ -11,8 +11,7 @@ export default function Home() {
   ]
   return (
     <div>
-      <h1>TABLERO DE REPORTES</h1>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 p-10">
         {reportes.map((reporte) => ( <Carta key={reporte.numero} reporte={reporte} /> ))}
       </div>
     </div>

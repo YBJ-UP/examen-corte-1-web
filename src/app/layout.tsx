@@ -27,6 +27,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <h1 className="text-2xl font-bold px-10 py-5 bg-emerald-700">TABLERO DE REPORTES</h1>
         {children}
       </body>
     </html>
