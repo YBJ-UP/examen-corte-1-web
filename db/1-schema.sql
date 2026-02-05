@@ -54,9 +54,9 @@ CREATE TABLE inscripciones (
 CREATE TABLE calificaciones ( --calificaciones de 0 a 100
     id SERIAL PRIMARY KEY,
     id_inscripcion INTEGER NOT NULL REFERENCES inscripciones(id),
-    parcial_1 INTEGER CHECK (parcial_1 >= 0 AND parcial_1 <= 100),
-    parcial_2 INTEGER CHECK (parcial_2 >= 0 AND parcial_2 <= 100),
-    final INTEGER CHECK (final >= 0 AND final <= 100)
+    parcial_1 INTEGER CHECK (parcial_1 >= 0 AND parcial_1 <= 100) DEFAULT 0,
+    parcial_2 INTEGER CHECK (parcial_2 >= 0 AND parcial_2 <= 100) DEFAULT 0,
+    final INTEGER CHECK (final >= 0 AND final <= 100) DEFAULT 0
 );
 
 CREATE TABLE asistencia (
