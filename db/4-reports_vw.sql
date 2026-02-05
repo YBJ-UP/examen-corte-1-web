@@ -41,3 +41,25 @@ CREATE OR REPLACE VIEW vw_carga_maestro AS
     ORDER BY m.nombre;
 
 SELECT * FROM vw_carga_maestro;
+
+--VIEW 3
+--ALUMNOS CON PROMEDIO O ASISTENCIAS BAJAS
+--BUSQUEDA POR NOMBRE Y CORREO + PAGINACION
+--DEBE LLEVAR CTE
+--ahorita lo hago
+
+--VIEW 4
+--ASISTENCIA PROMEDIO POR GRUPO + PERIODO (supongo que porcentaje pq si no como seria)
+--DEBE DE TENER CASE/COALESCE
+--asistencias pasa primero por inscripcion y dps por grupo
+CREATE OR REPLACE VIEW vw_asistencia_por_grupo AS
+    SELECT
+        g.id as grupo,
+        COALESCE( ROUND( AVG( CASE WHEN a.asistencia=TRUE AS 1 ELSE 0 END ), 2 ), ) as promedio_asistencias
+    FROM grupo g
+    JOIN inscripciones i ON i.id_grupo = g.id
+    JOIN asistencias a ON a.id_inscripcion = i.id
+    GROUP BY g.id
+    ORDER BY g.id;
+
+SELECT * FROM vw_asistencia_por_grupo
