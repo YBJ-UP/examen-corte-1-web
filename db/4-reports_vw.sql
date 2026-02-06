@@ -70,6 +70,7 @@ SELECT * FROM vw_estudiantes_preocupantes;
 CREATE OR REPLACE VIEW vw_asistencia_por_grupo AS
     SELECT
         g.id as grupo,
+        g.periodo,
         COALESCE( ROUND( AVG( CASE WHEN a.asistencia=TRUE THEN 1 ELSE 0 END ), 2 )*100, 0 ) as promedio_asistencias
     FROM grupos g
     JOIN inscripciones i ON i.id_grupo = g.id
