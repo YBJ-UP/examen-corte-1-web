@@ -47,7 +47,13 @@ SELECT * FROM vw_carga_maestro;
 --ALUMNOS CON PROMEDIO O ASISTENCIAS BAJAS
 --BUSQUEDA POR NOMBRE Y CORREO + PAGINACION
 --DEBE LLEVAR CTE
---ahorita lo hago
+CREATE OR REPLACE VIEW vw_estudiantes_preocupantes AS
+    WITH estadisticas AS (
+        SELECT
+            e.nombre, e.correo,
+            ROUND( AVG( (ca.parcial_1 + ca.parcial_2 + ca.final)/3.0 ) , 2 ) AS promedio_calificaciones,
+            ROUND( ( COUNT( CASE WHEN asis.asistencia = TRUE THEN 1 END )/NULLIF( COUNT( asis.id ), 0 ) ) , 2 ) AS promedio_asistencias
+    )
 
 --VIEW 4
 --ASISTENCIA PROMEDIO POR GRUPO + PERIODO (supongo que porcentaje pq si no como seria)
