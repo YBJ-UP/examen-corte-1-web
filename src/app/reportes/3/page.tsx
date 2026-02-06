@@ -35,7 +35,7 @@ export default async function reporte_3 ({ searchParams }: { searchParams:{[key:
                             ))}
                         </div>
             
-                        <Paginacion paginaActual={pagination.pagina} paginasTotales={pagination.totalPaginas} ruta="/reportes/2"/>
+                        <Paginacion paginaActual={pagination.pagina} paginasTotales={pagination.totalPaginas} ruta="/reportes/3"/>
                     </div>
         </div>
     )
