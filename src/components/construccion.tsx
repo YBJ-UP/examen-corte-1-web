@@ -9,6 +9,7 @@ export default function construyendo() {
                 alt="En construcción..."
                 width={500}
                 height={500}
+                className="rounded-2xl"
             />
             <p className="font-bold">Página en construcción...</p>
             <p>Aún no me dan ganas de hacerla</p>
