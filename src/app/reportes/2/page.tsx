@@ -18,6 +18,13 @@ export default async function reporte_2 ({ searchParams }: { searchParams:{[key:
             <p>Cuántos grupos y alumnos están bajo la tutela de cada profesor.</p>
 
             <div>
+                <div className="grid grid-cols-5 items-center border-2 border-amber-50 p-2">
+                    <p>Maestro</p>
+                    <p>Periodo</p>
+                    <p>Grupos</p>
+                    <p>Alumnos</p>
+                    <p>Promedio</p>
+                </div>
                 {data.map((dato:reporte2, key:number) => (
                     <div key={key} className="grid grid-cols-5 items-center border-2 border-amber-50 p-2">
                         <p>{dato.maestro}</p>
