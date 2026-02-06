@@ -4,15 +4,15 @@ import Paginacion from "@/components/paginacion"
 
 export const dynamic='force-dynamic'
 
-export default async function reporte_2 ({ searchParams }: { searchParams:string }) {
+export default async function reporte_2 ({ searchParams }: { searchParams:{[key:string]: string} }) {
     const paginaUnparsed = await searchParams
-    let paginaParsed = paginaSchema.parse(paginaUnparsed)
+    const paginaParsed = paginaSchema.parse(paginaUnparsed)
     console.log(paginaUnparsed, paginaParsed)
     const res = await paginarRep2(paginaParsed)
     if (!res.ok) {
-        throw new Error('Error al conseguir los reportes')
+        throw new Error(res.mensaje)
     }
-    const { data, pagination } = await res.json()
+    const { data, pagination } = res
     return (
         <div>
             <h1 className="text-2xl font-bold">Carga del maestro</h1>

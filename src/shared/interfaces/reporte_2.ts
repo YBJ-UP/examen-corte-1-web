@@ -12,7 +12,7 @@ const reporte2Schema = z.object({
 
 type reporte2 = z.infer<typeof reporte2Schema>
 
-export async function paginarRep2 ({pagina}:pagina) {
+export async function paginarRep2 ({pagina}:pagina): Promise<{ok: true, data:any, pagination:{ pagina:number, limite:number, totalFilasBien:number, totalPaginas:number } }  | {ok:false, mensaje:string}> {
     const limite = 5
     const offset = (pagina-1)*limite
 
@@ -23,7 +23,8 @@ export async function paginarRep2 ({pagina}:pagina) {
         const totalFilasBien = parseInt(totalFilas.rows[0].count)
         const totalPaginas = Math.ceil(totalFilasBien/limite)
 
-        return Response.json({
+        return {
+            ok:true,
             data: rows,
             pagination: {
                 pagina,
@@ -31,9 +32,9 @@ export async function paginarRep2 ({pagina}:pagina) {
                 totalFilasBien,
                 totalPaginas
             }
-        })
+        }
     } catch (error:any) {
-        return Response.json({ error: error.message }, { status:500 })
+        return { ok:false, mensaje:error.message }
     }
     
 }
