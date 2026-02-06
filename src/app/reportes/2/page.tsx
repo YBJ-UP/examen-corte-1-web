@@ -19,7 +19,7 @@ export default async function reporte_2 ({ searchParams }: { searchParams:{[key:
 
             <div>
                 {data.map((dato:reporte2, key:number) => (
-                    <div key={key}>
+                    <div key={key} className="grid grid-cols-5 items-center border-2 border-amber-50 p-2">
                         <p>{dato.maestro}</p>
                         <p>{dato.periodo}</p>
                         <p>{dato.grupos}</p>
