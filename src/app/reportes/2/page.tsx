@@ -19,7 +19,11 @@ export default async function reporte_2 ({ searchParams }: { searchParams:number
             <p>Cuántos grupos y alumnos están bajo la tutela de cada profesor.</p>
 
             <div>
-                <p>hola</p>
+                {data.map((dato:any) => (
+                    <div key={dato.maestro}>
+                        <p>{dato.maestro}</p>
+                    </div>
+                ))}
             </div>
 
             <Paginacion paginaActual={pagination.pagina} paginasTotales={pagination.totalPaginas} ruta="/reportes/2"/>

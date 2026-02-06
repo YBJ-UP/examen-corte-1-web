@@ -11,15 +11,13 @@ export default async function paginacion({ paginaActual, paginasTotales, ruta }:
     const ultimaPagina: boolean = paginaActual == paginasTotales
     console.log(paginaActual, paginasTotales, ruta, primeraPagina, ultimaPagina)
     return (
-        <div className="flex flex-row justify-center">
+        <div className="flex flex-row justify-center gap-6">
             {
-                !primeraPagina && <div>
-                    <p>Se puede retroceder</p>
-                </div>
+                !primeraPagina && <Link href={`${ruta}?page=${paginaActual-1}`}>Página anterior</Link>
             }
             <p>{paginaActual}</p>
             {
-                !ultimaPagina && <Link href={`${ruta}?page=${paginaActual+1}`}>ncdsnalas</Link>
+                !ultimaPagina && <Link href={`${ruta}?page=${paginaActual+1}`}>Siguiente página</Link>
             }
         </div>
     )
