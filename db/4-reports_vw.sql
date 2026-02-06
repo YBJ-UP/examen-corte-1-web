@@ -53,7 +53,15 @@ CREATE OR REPLACE VIEW vw_estudiantes_preocupantes AS
             e.nombre, e.correo,
             ROUND( AVG( (ca.parcial_1 + ca.parcial_2 + ca.final)/3.0 ) , 2 ) AS promedio_calificaciones,
             ROUND( ( COUNT( CASE WHEN asis.asistencia = TRUE THEN 1 END )/NULLIF( COUNT( asis.id ), 0 ) ) , 2 ) AS promedio_asistencias
+        FROM estudiantes e
+        JOIN inscripciones i ON e.id = i.id_estudiante
+        JOIN calificaciones ca ON i.id = ca.id_inscripcion
+        JOIN asistencias asis ON i.id = asis.id_inscripcion
+        GROUP BY e.nombre, e.correo
     )
+    SELECT * FROM estadisticas WHERE promedio_calificaciones < 70 OR promedio_asistencias < 70;
+
+SELECT * FROM vw_estudiantes_preocupantes;
 
 --VIEW 4
 --ASISTENCIA PROMEDIO POR GRUPO + PERIODO (supongo que porcentaje pq si no como seria)
