@@ -1,9 +1,9 @@
 INSERT INTO estudiantes (nombre, correo, programa) VALUES
-    ('Yael Betanzos Jiménez', 'yael@gmail.com', 'Sofsgüers'), --1
+    ('Yael Betanzos Jiménez', 'yael@gmail.com', 'Software'), --1
     ('Fulano de Fulán', 'fulano@gmail.com', 'Lage'), --2
-    ('Juán Juán Juárez Jiménez', 'juan@gmail.com', 'Petro'), --3
-    ('Pablo Petanzos Pascal', 'pablo@gmail.com', 'Ambiental'), --4
-    ('Federico Fazbear', 'federico@gmail.com', 'Electricista'); --5
+    ('Juán Juán Juárez Jiménez', 'juan@gmail.com', 'Ingeniería petrolera'), --3
+    ('Pablo Petanzos Pascal', 'pablo@gmail.com', 'Ingeniería ambiental'), --4
+    ('Federico Fazbear', 'federico@gmail.com', 'Ingeniería eléctrica'); --5
 
 INSERT INTO maestros (nombre, correo) VALUES
     ('Profe 1', 'one@gmail.com'), --1
