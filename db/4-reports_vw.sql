@@ -9,7 +9,7 @@ CREATE OR REPLACE VIEW vw_rendimiento_curso AS
         g.periodo,
         e.programa,
         ROUND(AVG((ca.parcial_1 + ca.parcial_2 + ca.final)/3.0),2) AS promedio,
-        COUNT(CASE WHEN ((ca.parcial_1 + ca.parcial_2 + ca.final)/3.0 > 70) THEN 1 END) AS reprobados
+        COUNT(CASE WHEN ((ca.parcial_1 + ca.parcial_2 + ca.final)/3.0 < 70) THEN 1 END) AS reprobados
     FROM cursos c
     JOIN grupos g ON c.id = g.id_curso
     JOIN inscripciones i ON i.id_grupo = g.id
