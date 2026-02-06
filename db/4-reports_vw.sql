@@ -89,12 +89,14 @@ CREATE OR REPLACE VIEW vw_tablero_estudiantes AS
         e.programa,
         g.periodo,
         ROUND( AVG( (ca.parcial_1 + ca.parcial_2 + ca.final)/3.0 ) ,2) as promedio,
-        RANK() OVER ( ORDER BY ROUND( AVG( (ca.parcial_1 + ca.parcial_2 + ca.final)/3.0 ) ,2) DESC ) AS lugar
+        RANK() OVER (
+                PARTITION BY e.programa, g.periodo
+                ORDER BY ROUND( AVG( (ca.parcial_1 + ca.parcial_2 + ca.final)/3.0 ) ,2) DESC
+            ) AS lugar
     FROM estudiantes e
     JOIN inscripciones i ON e.id = i.id_estudiante
     JOIN calificaciones ca ON ca.id_inscripcion = i.id
     JOIN grupos g ON g.id = i.id_grupo
-    GROUP BY e.nombre, e.programa, g.periodo
-    ORDER BY g.periodo DESC;
+    GROUP BY e.nombre, e.programa, g.periodo;
 
 SELECT * FROM vw_tablero_estudiantes;
