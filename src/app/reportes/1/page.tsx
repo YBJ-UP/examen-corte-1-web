@@ -10,10 +10,9 @@ export default async function reporte_1 () {
         throw new Error('Error al conseguir los datos');
     }
     const reporte:reporte1[] = view.rows;
-    console.log(reporte);
     return (
-        <div>
-            <div className="grid grid-cols-5">
+        <div className="flex flex-col m-10">
+            <div className="grid grid-cols-5 items-center border-2 border-amber-50 p-2">
                 <p>CURSO</p>
                 <p>PERIODO</p>
                 <p>PROGRAMA</p>
@@ -21,8 +20,12 @@ export default async function reporte_1 () {
                 <p>REPROBADOS</p>
             </div>
             {reporte.map((rep) => (
-                <div key={rep.codigo}>
-                    <div>rep.curso</div>
+                <div key={rep.codigo} className="grid grid-cols-5 items-center border-2 border-amber-50 p-2">
+                    <div>{rep.curso}</div>
+                    <div>{rep.periodo}</div>
+                    <div>{rep.programa}</div>
+                    <div>{rep.promedio}</div>
+                    <div>{rep.reprobados}</div>
                 </div>
             ))}
             <Construyendo />
