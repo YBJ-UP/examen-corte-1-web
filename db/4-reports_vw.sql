@@ -33,7 +33,7 @@ CREATE OR REPLACE VIEW vw_carga_maestro AS
         g.periodo,
         COUNT(DISTINCT g.id) AS grupos,
         COUNT(DISTINCT i.id) AS alumnos,
-        ROUND(AVG((ca.parcial_1 + ca.parcial_2 + ca.final)/3.0),2) as promedio_general
+        ROUND(AVG((ca.parcial_1 + ca.parcial_2 + ca.final)/3.0),2) as promedio
     FROM maestros m
     JOIN grupos g ON g.id_maestro = m.id
     JOIN inscripciones i ON i.id_grupo = g.id
