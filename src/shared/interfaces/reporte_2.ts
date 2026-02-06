@@ -12,9 +12,9 @@ const reporte2Schema = z.object({
 
 type reporte2 = z.infer<typeof reporte2Schema>
 
-export async function paginarRep2 ({pagina}:pagina): Promise<{ok: true, data:any, pagination:{ pagina:number, limite:number, totalFilasBien:number, totalPaginas:number } }  | {ok:false, mensaje:string}> {
+export async function paginarRep2 ({page}:pagina): Promise<{ok: true, data:any, pagination:{ pagina:number, limite:number, totalFilasBien:number, totalPaginas:number } }  | {ok:false, mensaje:string}> {
     const limite = 5
-    const offset = (pagina-1)*limite
+    const offset = (page-1)*limite
 
     try {
         const res = await query('SELECT * FROM vw_carga_maestro LIMIT $1 OFFSET $2', [limite, offset])
@@ -27,7 +27,7 @@ export async function paginarRep2 ({pagina}:pagina): Promise<{ok: true, data:any
             ok:true,
             data: rows,
             pagination: {
-                pagina,
+                pagina: page,
                 limite,
                 totalFilasBien,
                 totalPaginas
