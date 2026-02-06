@@ -13,6 +13,26 @@ type reporte2 = z.infer<typeof reporte2Schema>
 
 export async function paginarRep2 () {
     const pagina = 1
-    const view = query('SELECT * FROM vw_carga_maestro LIMIT $1 OFFSET $2', [10, (pagina-1)*10])
-    return view
+    const limite = 5
+
+    try {
+        const res = await query('SELECT * FROM vw_carga_maestro LIMIT $1 OFFSET $2', [limite, (pagina-1)*10])
+        const rows:reporte2[] = res.rows
+        const totalFilas = await query('SELECT COUNT(*) FROM vw_carga_maestro')
+        const totalFilasBien = parseInt(totalFilas.rows[0].count)
+        const totalPaginas = Math.ceil(totalFilasBien/limite)
+
+        return Response.json({
+            data: rows,
+            pagination: {
+                pagina,
+                limite,
+                totalFilasBien,
+                totalPaginas
+            }
+        })
+    } catch (error:any) {
+        return Response.json({ error: error.message }, { status:500 })
+    }
+    
 }
