@@ -14,7 +14,7 @@ export default async function reporte_5 () {
             <p>Ordena a los alumnos según sus calificaciones, los separa por programa educativo.</p>
 
             <div>
-                <p>jjjjjjjjjjjj</p>
+                <p>Esto era el cuadro de busqueda</p>
             </div>
 
             <div className="grid grid-cols-5 items-center border-2 border-amber-50 p-2">
