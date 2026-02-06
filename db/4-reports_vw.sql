@@ -52,7 +52,7 @@ CREATE OR REPLACE VIEW vw_estudiantes_preocupantes AS
         SELECT
             e.nombre, e.correo,
             ROUND( AVG( (ca.parcial_1 + ca.parcial_2 + ca.final)/3.0 ) , 2 ) AS promedio_calificaciones,
-            ROUND( ( COUNT( CASE WHEN asis.asistencia = TRUE THEN 1 END )/COUNT( asis.id ) ) , 2 ) AS promedio_asistencias
+            ROUND( ( COUNT( CASE WHEN asis.asistencia = TRUE THEN 1 ELSE 0 END )/NULLIF( COUNT( asis.id ), 0 ) )*100 , 2 ) AS promedio_asistencias
         FROM estudiantes e
         JOIN inscripciones i ON e.id = i.id_estudiante
         JOIN calificaciones ca ON i.id = ca.id_inscripcion
