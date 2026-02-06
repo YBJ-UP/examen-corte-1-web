@@ -4,6 +4,7 @@
 --FILTRO POR PERIODO Y/O PROGRAMA
 CREATE OR REPLACE VIEW vw_rendimiento_curso AS
     SELECT
+        c.codigo,
         c.nombre as curso,
         g.periodo,
         e.programa,
@@ -14,7 +15,7 @@ CREATE OR REPLACE VIEW vw_rendimiento_curso AS
     JOIN inscripciones i ON i.id_grupo = g.id
     JOIN calificaciones ca ON ca.id_inscripcion = i.id
     JOIN estudiantes e ON e.id = i.id_estudiante
-    GROUP BY c.nombre, g.periodo, e.programa
+    GROUP BY c.codigo, c.nombre, g.periodo, e.programa
     ORDER BY e.programa;
 
 --prueba
