@@ -12,6 +12,9 @@ export default async function reporte_1 () {
     const reporte:reporte1[] = view.rows;
     return (
         <div className="flex flex-col m-10">
+            <h1 className="text-2xl font-bold">Rendimiento del curso</h1>
+            <p>Promedio general del curso y número de reprobados.</p>
+
             <div className="grid grid-cols-5 items-center border-2 border-amber-50 p-2">
                 <p>CURSO</p>
                 <p>PERIODO</p>
@@ -21,11 +24,11 @@ export default async function reporte_1 () {
             </div>
             {reporte.map((rep) => (
                 <div key={rep.codigo} className="grid grid-cols-5 items-center border-2 border-amber-50 p-2">
-                    <div>{rep.curso}</div>
-                    <div>{rep.periodo}</div>
-                    <div>{rep.programa}</div>
-                    <div>{rep.promedio}</div>
-                    <div>{rep.reprobados}</div>
+                    <p>{rep.curso}</p>
+                    <p>{rep.periodo}</p>
+                    <p>{rep.programa}</p>
+                    <p>{rep.promedio}</p>
+                    <p>{rep.reprobados}</p>
                 </div>
             ))}
             <Construyendo />
