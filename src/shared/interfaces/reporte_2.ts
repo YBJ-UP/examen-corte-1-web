@@ -1,6 +1,6 @@
 import { query } from "@/lib/db"
 import z from "zod"
-import { pagina } from "./pagina"
+import { pagina, paginado } from "./pagina"
 
 const reporte2Schema = z.object({
     maestro: z.string().min(1).max(100),
@@ -12,14 +12,14 @@ const reporte2Schema = z.object({
 
 export type reporte2 = z.infer<typeof reporte2Schema>
 
-export async function paginarRep2 ({page}:pagina): Promise<{ok: true, data:any, pagination:{ pagina:number, limite:number, totalFilasBien:number, totalPaginas:number } }  | {ok:false, mensaje:string}> {
+export async function paginarRep2 ({page}:pagina): Promise<paginado> {
     const limite = 5
     const offset = (page-1)*limite
 
     try {
-        const res = await query('SELECT * FROM vw_carga_maestro LIMIT $1 OFFSET $2', [limite, offset])
+        const res = await query('SELECT * FROM vw_carga_maestro LIMIT $1 OFFSET $2;', [limite, offset])
         const rows:reporte2[] = res.rows
-        const totalFilas = await query('SELECT COUNT(*) FROM vw_carga_maestro')
+        const totalFilas = await query('SELECT COUNT(*) FROM vw_carga_maestro;')
         const totalFilasBien = parseInt(totalFilas.rows[0].count)
         const totalPaginas = Math.ceil(totalFilasBien/limite)
 
