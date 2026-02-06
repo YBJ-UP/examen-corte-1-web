@@ -3,14 +3,14 @@ import z from "zod"
 import { pagina } from "./pagina"
 
 const reporte2Schema = z.object({
-    nombre: z.string().min(1).max(100),
+    maestro: z.string().min(1).max(100),
     periodo: z.number().positive().min(1).max(15),
     grupos: z.number().positive().min(1),
     alumnos: z.number().positive().min(0),
     promedio: z.number().min(0).max(100)
 })
 
-type reporte2 = z.infer<typeof reporte2Schema>
+export type reporte2 = z.infer<typeof reporte2Schema>
 
 export async function paginarRep2 ({page}:pagina): Promise<{ok: true, data:any, pagination:{ pagina:number, limite:number, totalFilasBien:number, totalPaginas:number } }  | {ok:false, mensaje:string}> {
     const limite = 5

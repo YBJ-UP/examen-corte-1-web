@@ -10,14 +10,17 @@ export default async function paginacion({ paginaActual, paginasTotales, ruta }:
     const primeraPagina: boolean = paginaActual == 1
     const ultimaPagina: boolean = paginaActual == paginasTotales
     return (
-        <div className="flex flex-row justify-center gap-6">
-            {
-                !primeraPagina && <Link href={`${ruta}?page=${paginaActual-1}`}>Página anterior</Link>
-            }
-            <p>{paginaActual} de {paginasTotales}</p>
-            {
-                !ultimaPagina && <Link href={`${ruta}?page=${paginaActual+1}`}>Siguiente página</Link>
-            }
+        <div className="flex justify-center">
+            <div className="grid grid-cols-3 justify-center gap-6">
+                <div>
+                    { !primeraPagina && <Link href={`${ruta}?page=${paginaActual-1}`}>Página anterior</Link> }
+                </div>
+                <p>{paginaActual} de {paginasTotales}</p>
+                <div>
+                    { !ultimaPagina && <Link href={`${ruta}?page=${paginaActual+1}`}>Siguiente página</Link> }
+                </div>
+            </div>
         </div>
+        
     )
 }
