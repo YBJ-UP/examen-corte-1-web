@@ -1,4 +1,4 @@
-import { reporte } from "@/shared/interfaces/reporte";
+import { reporte } from "@/shared/interfaces/reporte_1";
 import Carta from "@/components/carta";
 
 export default function Home() {

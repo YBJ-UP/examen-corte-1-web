@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { reporte } from "@/shared/interfaces/reporte";
+import { reporte } from "@/shared/interfaces/reporte_1";
 
 export default function Carta({ reporte }: { reporte:reporte }) {
     return (

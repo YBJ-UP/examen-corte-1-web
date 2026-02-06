@@ -1,6 +1,6 @@
 import Construyendo from "@/components/construccion"
 import { query } from "@/lib/db"
-import { reporte1 } from "@/shared/interfaces/reporte";
+import { reporte1 } from "@/shared/interfaces/reporte_1";
 
 export const dynamic = 'force-dynamic';
 
