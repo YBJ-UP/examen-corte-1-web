@@ -15,11 +15,11 @@ export default async function reporte_3 ({ searchParams }: { searchParams:{[key:
     }
     const { data, pagination } = res
     return (
-        <div>
-            <Suspense fallback={<p>xd</p>}>
-                <Busqueda />
-            </Suspense>
+        <>
             <div className="m-10">
+                <Suspense fallback={<p>Búsqueda</p>}>
+                    <Busqueda />
+                </Suspense>
                 <h1 className="text-2xl font-bold">Alumnos preocupantes</h1>
                 <p>Alumnos con calificaciones bajas o pocas asistencias.</p>
 
@@ -42,6 +42,6 @@ export default async function reporte_3 ({ searchParams }: { searchParams:{[key:
 
                 <Paginacion paginaActual={pagination.pagina} paginasTotales={pagination.totalPaginas} ruta="/reportes/3"/>
             </div>
-        </div>
+        </>
     )
 }
