@@ -25,7 +25,10 @@ export default async function busqueda() {
 
     return (
         <div>
-            <input type="text" placeholder="Buscar..." onChange={ (e) => { manejarBusqueda(e.target.value) } } />
+            <input type="text" placeholder="Buscar..." 
+                onChange={ (e) => { manejarBusqueda(e.target.value) } }
+                defaultValue={parametro.get('query')?.toString()}
+            />
         </div>
     )
 }
