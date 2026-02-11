@@ -1,12 +1,23 @@
 'use client'
 
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
 
 export default async function busqueda() {
     const parametro = useSearchParams()
 
-    function manejarBusqueda(param:string) {
-        console.log(param)
+    function manejarBusqueda(termino:string) {
+        const params = new URLSearchParams(parametro)
+        const ruta = usePathname()
+        const {replace} = useRouter()
+
+        if (termino) {
+            params.set('nombre', termino)
+        } else {
+            params.delete('nombre')
+        }
+        console.log(termino)
+        replace(`${ruta}?${params.toString()}`)
     }
 
     const busqueda = parametro.get('nombre')
