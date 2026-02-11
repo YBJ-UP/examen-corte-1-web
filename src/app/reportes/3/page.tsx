@@ -6,12 +6,12 @@ export const dynamic = 'force-dynamic'
 
 export default async function reporte_3 ({ searchParams }: { searchParams:{[key:string]: string} }) {
     const paginaUnparsed = await searchParams
-        const paginaParsed = paginaSchema.parse(paginaUnparsed)
-        const res = await paginarRep3(paginaParsed)
-        if (!res.ok) {
-            throw new Error(res.mensaje)
-        }
-        const { data, pagination } = res
+    const paginaParsed = paginaSchema.parse(paginaUnparsed)
+    const res = await paginarRep3(paginaParsed)
+    if (!res.ok) {
+        throw new Error(res.mensaje)
+    }
+    const { data, pagination } = res
     return (
         <div>
             <div className="m-10">
