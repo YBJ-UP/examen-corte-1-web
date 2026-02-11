@@ -1,5 +1,3 @@
-'use client'
-
 import Paginacion from "@/components/paginacion"
 import Busqueda from "@/components/busqueda"
 import { Suspense } from "react"
