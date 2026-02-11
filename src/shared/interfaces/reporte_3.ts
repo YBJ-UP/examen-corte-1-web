@@ -12,7 +12,7 @@ const reporte3Schema = z.object({
 export type reporte3Type = z.infer<typeof reporte3Schema>
 
 export async function paginarRep3 ({page}: pagina):Promise<paginado> {
-    const limite = 10
+    const limite = 2
     const offset = (page-1)*limite
 
     try {
