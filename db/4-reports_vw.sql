@@ -19,7 +19,7 @@ CREATE OR REPLACE VIEW vw_rendimiento_curso AS
     ORDER BY e.programa;
 
 --prueba
-SELECT * FROM vw_rendimiento_curso;
+SELECT periodo, programa FROM vw_rendimiento_curso;
 
 -- toma curso y periodo, programa pq lo pide y calificaciones pq la view es de calificaciones, las inscripciones pq las calificaciones van ligadas a esas
 
