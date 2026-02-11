@@ -1,3 +1,4 @@
+import { query } from "@/lib/db";
 import z from "zod";
 
 const reporte5Schema = z.object({
@@ -9,3 +10,16 @@ const reporte5Schema = z.object({
 })
 
 export type reporte5Type = z.infer<typeof reporte5Schema>
+
+export async function getReporte5():Promise<reporte5Type[]> {
+    try {
+        const res = await query('SELECT * FROM vw_tablero_estudiantes;')
+        if (!res.rows) {
+            throw new Error('Error al conseguir los datos');
+        }
+        const reporte4:reporte5Type[] = res.rows
+        return reporte4
+    } catch (error:any) {
+        throw new Error(error.message)
+    }
+}

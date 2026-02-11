@@ -1,3 +1,4 @@
+import { query } from "@/lib/db";
 import z from "zod"
 
 export const reporte1Schema = z.object({
@@ -15,4 +16,17 @@ export interface reporte {
     titulo: string,
     descripcion: string,
     numero: number
+}
+
+export async function getReporte1():Promise<reporte1[]> {
+    try {
+        const res = await query('SELECT * FROM vw_rendimiento_curso');
+        if (!res.rows) {
+            throw new Error('Error al conseguir los datos');
+        }
+        const reporte: reporte1[] = res.rows
+        return reporte
+    } catch (error:any) {
+        throw new Error(error.message)
+    }
 }

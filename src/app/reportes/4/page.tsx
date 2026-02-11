@@ -1,14 +1,9 @@
-import { query } from "@/lib/db"
-import { reporte4Type } from "@/shared/interfaces/reporte_4"
+import { getReporte4, reporte4Type } from "@/shared/interfaces/reporte_4"
 
 export const dynamic = 'force-dynamic'
 
 export default async function reporte_4 () {
-    const res = await query('SELECT * FROM vw_asistencia_por_grupo;')
-    if (!res.rows){
-        throw new Error('Error al obtener los datos')
-    }
-    const data:reporte4Type[] = res.rows
+    const data:reporte4Type[] = await getReporte4()
     return (
         <div className="flex flex-col m-10">
             <h1 className="text-2xl font-bold">Asistencias por grupo</h1>

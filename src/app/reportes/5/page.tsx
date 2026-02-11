@@ -1,13 +1,9 @@
-import Construyendo from "@/components/construccion"
-import { query } from "@/lib/db"
-import { reporte5Type } from "@/shared/interfaces/reporte_5"
+import { getReporte5, reporte5Type } from "@/shared/interfaces/reporte_5"
 
 export const dynamic = 'force-dynamic'
 
 export default async function reporte_5 () {
-    const res = await query('SELECT * FROM vw_tablero_estudiantes;')
-    if (!res.rows){ throw new Error('Error al conseguir los datos') }
-    const data:reporte5Type[] = res.rows
+    const data:reporte5Type[] = await getReporte5()
     return (
         <div className="m-10">
             <h1 className="text-2xl font-bold">Tablero de estudiantes</h1>
