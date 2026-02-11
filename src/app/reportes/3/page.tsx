@@ -1,14 +1,14 @@
 import Paginacion from "@/components/paginacion"
 import Busqueda from "@/components/busqueda"
 import { Suspense } from "react"
-import { paginaSchema } from "@/shared/interfaces/pagina"
+import { pagina, paginaSchema } from "@/shared/interfaces/pagina"
 import { paginarRep3, reporte3Type } from "@/shared/interfaces/reporte_3"
 
 export const dynamic = 'force-dynamic'
 
 export default async function reporte_3 (props: { searchParams?:Promise<{[key:string]: string}> }) {
     const searchParams = await props.searchParams
-    const paginaUnparsed = searchParams?.page || {page:'1'}
+    const paginaUnparsed:{page:string} = {page: searchParams?.page || '1'}
     const paginaParsed = paginaSchema.parse(paginaUnparsed)
     const res = await paginarRep3(paginaParsed)
     if (!res.ok) {
