@@ -18,9 +18,19 @@ export interface reporte {
     numero: number
 }
 
-export async function getReporte1():Promise<reporte1[]> {
+export async function getReporte1(props: { searchParams?:Promise<{[key:string]: string}> }):Promise<reporte1[]> {
+    const searchParams = await props.searchParams
     try {
-        const res = await query('SELECT * FROM vw_rendimiento_curso');
+        let res
+        if (searchParams?.programa && searchParams?.periodo) {
+            res = await query('SELECT * FROM vw_rendimiento_curso WHERE programa=$1 AND periodo=$2;', [searchParams.programa, searchParams.periodo]);
+        } else if (searchParams?.programa) {
+            res = await query('SELECT * FROM vw_rendimiento_curso WHERE programa=$1;', [searchParams.programa]);
+        } else if (searchParams?.periodo) {
+            res = await query('SELECT * FROM vw_rendimiento_curso WHERE periodo=$1;', [searchParams.periodo]);
+        } else {
+            res = await query('SELECT * FROM vw_rendimiento_curso;');
+        }
         if (!res.rows) {
             throw new Error('Error al conseguir los datos');
         }

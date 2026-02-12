@@ -4,8 +4,8 @@ import { Suspense } from "react";
 
 export const dynamic = 'force-dynamic';
 
-export default async function reporte_1 () {
-    const reporte:reporte1[] = await getReporte1()
+export default async function reporte_1 (props: { searchParams?:Promise<{[key:string]: string}> }) {
+    const reporte:reporte1[] = await getReporte1(props)
     const programas:{programa:string}[] = await getProgramas()
     return (
         <div className="flex flex-col m-10">
