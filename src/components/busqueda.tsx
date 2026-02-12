@@ -40,7 +40,7 @@ export default function busqueda() {
     console.log(busqueda)
 
     return (
-        <div className="flex gap-5 mb-5">
+        <div className="flex gap-5 my-5">
 
             <button className=" bg-cyan-700 p-3 rounded-2xl" onClick={cambiarTipo}>Buscar por {tipo}</button>
 

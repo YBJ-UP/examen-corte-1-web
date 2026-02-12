@@ -16,12 +16,13 @@ export default async function reporte_3 (props: { searchParams?:Promise<{[key:st
         <>
             <div className="m-10">
                 
-                <Suspense fallback={<p>Búsquedas</p>}>
-                    <Busqueda />
-                </Suspense>
                 <h1 className="text-2xl font-bold">Alumnos preocupantes</h1>
                 <p>Alumnos con calificaciones bajas o pocas asistencias.</p>
 
+                <Suspense fallback={<p>Búsquedas</p>}>
+                    <Busqueda />
+                </Suspense>
+                
                 <div className="my-5">
                     <div className="grid grid-cols-5 items-center border-2 border-amber-50 p-2">
                         <p>Nombre del alumno</p>
