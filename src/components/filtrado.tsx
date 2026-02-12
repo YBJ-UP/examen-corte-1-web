@@ -6,20 +6,27 @@ import { useState } from "react"
 export default function filtrado ({programas}:{programas:{programa:string}[]}) {
     const [prog, setProg] = useState<string>('')
 
-    const params = useSearchParams()
+    const parametros = useSearchParams()
+    const params = new URLSearchParams(parametros)
     const ruta = usePathname()
     const { replace } = useRouter()
 
     function selecProg(input:string) {
         setProg(input)
-        console.log(prog)
+        if (input){
+            params.set("programa", input)
+        } else {
+            params.delete('programa')
+        }
+
+        replace(`${ruta}?${params.toString()}`)
     }
 
     return (
         <div className="flex gap-5 my-5">
             <div className="flex gap-5 items-center">
                 <label htmlFor="programa">Seleccionar programa:</label>
-                <select name="programa" id="programa" className="bg-black border-2 rounded-2xl px-5 py-2" onChange={(e) => {selecProg(e.target.value)}}>
+                <select name="programa" id="programa" className="bg-black border-2 rounded-2xl px-5 py-2" onChange={(e) => {selecProg(e.target.value.trim())}}>
                     <option value="">-</option>
                     {programas.map((programa, key:number) => (
                         <option key={key} value={programa.programa}>{programa.programa}</option>
