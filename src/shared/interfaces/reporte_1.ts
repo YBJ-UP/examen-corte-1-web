@@ -56,7 +56,7 @@ export async function getProgramas() {
 
 export async function getKPI () {
     try {
-        const res = await query('SELECT promedio from vw_rendimiento_curso ORDER BY promedio DESC LIMIT 1;')
+        const res = await query('SELECT promedio, programa, periodo FROM vw_rendimiento_curso ORDER BY promedio DESC LIMIT 1;')
         if (!res.rows) {
             throw new Error('Error al obtener la KPI')
         }
