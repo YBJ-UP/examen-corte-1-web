@@ -21,18 +21,26 @@ export async function paginarRep3 (props: { searchParams?:Promise<{[key:string]:
     const offset = (page-1)*limite
 
     try {
+        let totalFilas
+        let totalFilasBien
+        let totalPaginas
+        let res
 
-        const res = !searchParams?.nombre && !searchParams?.correo ?
-            await query('SELECT * FROM vw_estudiantes_preocupantes LIMIT $1 OFFSET $2;', [limite,offset])
-            : searchParams?.nombre ?
-                await query("SELECT * FROM vw_estudiantes_preocupantes WHERE nombre ILIKE $3 LIMIT $1 OFFSET $2;", [limite,offset, `%${searchParams.nombre}%`])
-                : await query("SELECT * FROM vw_estudiantes_preocupantes WHERE correo ILIKE $3 LIMIT $1 OFFSET $2;", [limite,offset, `%${searchParams.correo}%`])
-        
+        if (searchParams?.nombre) {
+            res = await query("SELECT * FROM vw_estudiantes_preocupantes WHERE nombre ILIKE $3 LIMIT $1 OFFSET $2;", [limite,offset, `%${searchParams.nombre}%`])
+            totalFilas = await query('SELECT COUNT(*) FROM vw_estudiantes_preocupantes WHERE nombre ILIKE $1;', [`%${searchParams.nombre}%`])
+        } else if (searchParams?.correo) {
+            res = await query("SELECT * FROM vw_estudiantes_preocupantes WHERE correo ILIKE $3 LIMIT $1 OFFSET $2;", [limite,offset, `%${searchParams.correo}%`])
+            totalFilas = await query('SELECT COUNT(*) FROM vw_estudiantes_preocupantes WHERE correo ILIKE $1;', [`%${searchParams.correo}%`])
+        } else {
+            res = await query('SELECT * FROM vw_estudiantes_preocupantes LIMIT $1 OFFSET $2;', [limite,offset])
+            totalFilas = await query('SELECT COUNT(*) FROM vw_estudiantes_preocupantes;')
+        }
+
         const rows:reporte3Type[] = res.rows
 
-        const totalFilas = await query('SELECT COUNT(*) FROM vw_estudiantes_preocupantes;')
-        const totalFilasBien = parseInt(totalFilas.rows[0].count)
-        const totalPaginas = Math.ceil(totalFilasBien/limite)
+        totalFilasBien = parseInt(totalFilas.rows[0].count)
+        totalPaginas = Math.ceil(totalFilasBien/limite)
 
         return {
             ok:true,
