@@ -1,5 +1,5 @@
 import z from "zod";
-import { pagina, paginado, paginaSchema } from "./pagina";
+import { paginado, paginaSchema } from "./pagina";
 import { query } from "@/lib/db";
 
 const reporte3Schema = z.object({
