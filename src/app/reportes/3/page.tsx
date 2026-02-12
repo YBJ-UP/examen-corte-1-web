@@ -18,16 +18,16 @@ export default async function reporte_3 (props: { searchParams?:Promise<{[key:st
             <div className="m-10">
 
                 <div className="flex gap-20 items-center">
-                <div>
-                    <h1 className="text-2xl font-bold">Alumnos preocupantes</h1>
-                    <p>Alumnos con calificaciones bajas o pocas asistencias.</p>
+                    <div>
+                        <h1 className="text-2xl font-bold">Alumnos preocupantes</h1>
+                        <p>Alumnos con calificaciones bajas o pocas asistencias.</p>
+                    </div>
+                    
+                    <div className=" flex flex-col gap-2 items-center rounded-2xl text-xl bg-red-700 p-5">
+                        <h2 className="font-medium">Alumno con el promedio más bajo:</h2>
+                        <p className="text-sm">{kpi.nombre} ({kpi.correo}) con {kpi.promedio_calificaciones}</p>
+                    </div>
                 </div>
-                
-                <div className=" flex flex-col gap-2 items-center rounded-2xl text-xl bg-red-700 p-5">
-                    <h2 className="font-medium">Alumno con el promedio más bajo:</h2>
-                    <p className="text-sm">{kpi.nombre} ({kpi.correo}) con {kpi.promedio_calificaciones}</p>
-                </div>
-            </div>
 
                 <Suspense fallback={<p>Búsquedas</p>}>
                     <Busqueda />
