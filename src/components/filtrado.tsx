@@ -1,13 +1,17 @@
 'use client'
 
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
 
 export default function filtrado ({programas}:{programas:{programa:string}[]}) {
     const [prog, setProg] = useState<string>('')
 
-    function selecProg(input:React.ChangeEvent<HTMLSelectElement>) {
-        const select = input.target.value
-        setProg(select)
+    const params = useSearchParams()
+    const ruta = usePathname()
+    const { replace } = useRouter()
+
+    function selecProg(input:string) {
+        setProg(input)
         console.log(prog)
     }
 
@@ -15,7 +19,7 @@ export default function filtrado ({programas}:{programas:{programa:string}[]}) {
         <div className="flex gap-5 my-5">
             <div className="flex gap-5 items-center">
                 <label htmlFor="programa">Seleccionar programa:</label>
-                <select name="programa" id="programa" className="bg-black border-2 rounded-2xl px-5 py-2" onChange={selecProg}>
+                <select name="programa" id="programa" className="bg-black border-2 rounded-2xl px-5 py-2" onChange={(e) => {selecProg(e.target.value)}}>
                     <option value="">-</option>
                     {programas.map((programa, key:number) => (
                         <option key={key} value={programa.programa}>{programa.programa}</option>
