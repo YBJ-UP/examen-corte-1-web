@@ -25,8 +25,8 @@ export async function paginarRep3 (props: { searchParams?:Promise<{[key:string]:
         const res = !searchParams?.nombre && !searchParams?.correo ?
             await query('SELECT * FROM vw_estudiantes_preocupantes LIMIT $1 OFFSET $2;', [limite,offset])
             : searchParams?.nombre ?
-                await query('SELECT * FROM vw_estudiantes_preocupantes WHERE nombre=$3 LIMIT $1 OFFSET $2;', [limite,offset, searchParams.nombre])
-                : await query('SELECT * FROM vw_estudiantes_preocupantes WHERE correo=$3 LIMIT $1 OFFSET $2;', [limite,offset, searchParams.correo])
+                await query("SELECT * FROM vw_estudiantes_preocupantes WHERE nombre ILIKE $3 LIMIT $1 OFFSET $2;", [limite,offset, searchParams.nombre])
+                : await query("SELECT * FROM vw_estudiantes_preocupantes WHERE correo ILIKE $3 LIMIT $1 OFFSET $2;", [limite,offset, searchParams.correo])
         
         const rows:reporte3Type[] = res.rows
 
