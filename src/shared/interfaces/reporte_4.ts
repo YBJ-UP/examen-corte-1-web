@@ -21,3 +21,16 @@ export async function getReporte4():Promise<reporte4Type[]> {
         throw new Error(error.message)
     }
 }
+
+export async function getKPI() {
+    try {
+        const res = await query('SELECT grupo, periodo, promedio_asistencias FROM vw_asistencia_por_grupo ORDER BY promedio_asistencias ASC LIMIT 1;')
+        if (!res.rows) {
+            throw new Error('Error al obtener la KPI')
+        }
+        const kpi = res.rows[0]
+        return kpi
+    } catch (error:any) {
+        throw new Error(error.message)
+    }
+}
