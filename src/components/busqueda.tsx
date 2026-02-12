@@ -37,7 +37,6 @@ export default function busqueda() {
     }
 
     const busqueda = parametro.get(tipo)
-    console.log(busqueda)
 
     return (
         <div className="flex gap-5 my-5">
