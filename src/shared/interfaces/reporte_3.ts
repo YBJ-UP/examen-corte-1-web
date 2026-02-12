@@ -59,3 +59,16 @@ export async function paginarRep3 (props: { searchParams?:Promise<{[key:string]:
         }
     }
 }
+
+export async function getKPI() {
+    try {
+        const res = await query('SELECT nombre, correo, promedio_calificaciones FROM vw_estudiantes_preocupantes ORDER BY promedio_calificaciones ASC LIMIT 1;')
+        if (!res.rows) {
+            throw new Error('Error al obtener la KPI')
+        }
+        const kpi = res.rows[0]
+        return kpi
+    } catch (error:any) {
+        throw new Error(error.message)
+    }
+}
