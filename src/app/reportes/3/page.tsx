@@ -15,6 +15,7 @@ export default async function reporte_3 (props: { searchParams?:Promise<{[key:st
         throw new Error(res.mensaje)
     }
     const { data, pagination } = res
+    
     return (
         <>
             <div className="m-10">
