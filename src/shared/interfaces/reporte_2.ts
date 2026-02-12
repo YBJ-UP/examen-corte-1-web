@@ -38,3 +38,16 @@ export async function paginarRep2 ({page}:pagina): Promise<paginado> {
     }
     
 }
+
+export async function getKPI() {
+    try {
+        const res = await query('SELECT maestro, grupos, alumnos FROM vw_carga_maestro ORDER BY grupos DESC LIMIT 1;')
+        if (!res.rows) {
+            throw new Error('Error al obtener la KPI')
+        }
+        const kpi = res.rows[0]
+        return kpi
+    } catch (error:any) {
+        throw new Error(error.message)
+    }
+}
