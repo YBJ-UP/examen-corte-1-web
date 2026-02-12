@@ -1,12 +1,14 @@
 import Paginacion from "@/components/paginacion"
 import Busqueda from "@/components/busqueda"
 import { Suspense } from "react"
-import { pagina, paginaSchema } from "@/shared/interfaces/pagina"
+import { paginaSchema } from "@/shared/interfaces/pagina"
 import { paginarRep3, reporte3Type } from "@/shared/interfaces/reporte_3"
 
 export const dynamic = 'force-dynamic'
 
 export default async function reporte_3 (props: { searchParams?:Promise<{[key:string]: string}> }) {
+
+
     const searchParams = await props.searchParams
     const paginaUnparsed:{page:string} = {page: searchParams?.page || '1'}
     const paginaParsed = paginaSchema.parse(paginaUnparsed)
@@ -19,7 +21,8 @@ export default async function reporte_3 (props: { searchParams?:Promise<{[key:st
     return (
         <>
             <div className="m-10">
-                <Suspense fallback={<p>Búsqueda</p>}>
+                
+                <Suspense fallback={<p>Búsquedas</p>}>
                     <Busqueda />
                 </Suspense>
                 <h1 className="text-2xl font-bold">Alumnos preocupantes</h1>
