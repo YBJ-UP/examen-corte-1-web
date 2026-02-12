@@ -30,3 +30,16 @@ export async function getReporte1():Promise<reporte1[]> {
         throw new Error(error.message)
     }
 }
+
+export async function getProgramas() {
+    try {
+        const res = await query('SELECT DISTINCT programa FROM vw_rendimiento_curso;')
+        if (!res.rows) {
+            throw new Error('Error al conseguir los datos')
+        }
+        const programas:{programa:string}[] = res.rows
+        return programas
+    } catch (error:any) {
+        throw new Error(error.message)
+    }
+}
