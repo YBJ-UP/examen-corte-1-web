@@ -13,6 +13,7 @@ export type reporte3Type = z.infer<typeof reporte3Schema>
 
 export async function paginarRep3 (props: { searchParams?:Promise<{[key:string]: string}> }):Promise<paginado> {
     const searchParams = await props.searchParams
+
     const paginaUnparsed:{page:string} = {page: searchParams?.page || '1'}
     const paginaParsed = paginaSchema.parse(paginaUnparsed)
     const {page} = paginaParsed
@@ -20,7 +21,13 @@ export async function paginarRep3 (props: { searchParams?:Promise<{[key:string]:
     const offset = (page-1)*limite
 
     try {
-        const res = await query('SELECT * FROM vw_estudiantes_preocupantes LIMIT $1 OFFSET $2;', [limite,offset])
+
+        const res = !searchParams?.nombre && !searchParams?.correo ?
+            await query('SELECT * FROM vw_estudiantes_preocupantes LIMIT $1 OFFSET $2;', [limite,offset])
+            : searchParams?.nombre ?
+                await query('SELECT * FROM vw_estudiantes_preocupantes WHERE nombre=$3 LIMIT $1 OFFSET $2;', [limite,offset, searchParams.nombre])
+                : await query('SELECT * FROM vw_estudiantes_preocupantes WHERE correo=$3 LIMIT $1 OFFSET $2;', [limite,offset, searchParams.correo])
+        
         const rows:reporte3Type[] = res.rows
 
         const totalFilas = await query('SELECT COUNT(*) FROM vw_estudiantes_preocupantes;')
