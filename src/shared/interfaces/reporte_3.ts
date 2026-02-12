@@ -1,5 +1,5 @@
 import z from "zod";
-import { pagina, paginado } from "./pagina";
+import { pagina, paginado, paginaSchema } from "./pagina";
 import { query } from "@/lib/db";
 
 const reporte3Schema = z.object({
@@ -11,7 +11,11 @@ const reporte3Schema = z.object({
 
 export type reporte3Type = z.infer<typeof reporte3Schema>
 
-export async function paginarRep3 ({page}: pagina):Promise<paginado> {
+export async function paginarRep3 (props: { searchParams?:Promise<{[key:string]: string}> }):Promise<paginado> {
+    const searchParams = await props.searchParams
+    const paginaUnparsed:{page:string} = {page: searchParams?.page || '1'}
+    const paginaParsed = paginaSchema.parse(paginaUnparsed)
+    const {page} = paginaParsed
     const limite = 2
     const offset = (page-1)*limite
 
