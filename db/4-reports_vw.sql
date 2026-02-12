@@ -1,7 +1,7 @@
 --VIEW 1
---UNA FILA POR CURSO + PERIODO
---PROMEDIOS Y REPROBADOS CON CASE
---FILTRO POR PERIODO Y/O PROGRAMA
+--¿Qué devuelve? Promedio general del curso y la cantidad de reprobados
+--Grain: Cada fila representaun curso, su código, su nombre, el periodo y el programa al que pertenece
+--Métricas: Promedio y reprobados
 CREATE OR REPLACE VIEW vw_rendimiento_curso AS
     SELECT
         c.codigo,
@@ -21,12 +21,10 @@ CREATE OR REPLACE VIEW vw_rendimiento_curso AS
 --prueba
 SELECT periodo, programa FROM vw_rendimiento_curso;
 
--- toma curso y periodo, programa pq lo pide y calificaciones pq la view es de calificaciones, las inscripciones pq las calificaciones van ligadas a esas
-
 --VIEW 2
---CARGA DE DOCENTE + PERIODO
---ATRIBUTOS grupos, alumnos_totales (supongo que por periodo), promedio_general
---DEBE DE TENER UN HAVING
+--¿Qué devuelve? Cuántos grupos y alumnos están bajo la tutela de cada profesor
+--Grain: Cada fila representa un mestro y su periodo
+--Métricas: Grupos, alumnos y promedios
 CREATE OR REPLACE VIEW vw_carga_maestro AS
     SELECT
         m.nombre AS maestro,
@@ -44,9 +42,9 @@ CREATE OR REPLACE VIEW vw_carga_maestro AS
 SELECT * FROM vw_carga_maestro;
 
 --VIEW 3
---ALUMNOS CON PROMEDIO O ASISTENCIAS BAJAS
---BUSQUEDA POR NOMBRE Y CORREO + PAGINACION
---DEBE LLEVAR CTE
+--¿Qué devuelve? Alumnos con calificaciones bajas y pocas asistencias
+--Grain: Cada fila representa un estudiante y su correo
+--Métricas: Promedio de calificaciones y asistencias
 CREATE OR REPLACE VIEW vw_estudiantes_preocupantes AS
     WITH estadisticas AS (
         SELECT
@@ -64,9 +62,9 @@ CREATE OR REPLACE VIEW vw_estudiantes_preocupantes AS
 SELECT * FROM vw_estudiantes_preocupantes;
 
 --VIEW 4
---ASISTENCIA PROMEDIO POR GRUPO + PERIODO (supongo que porcentaje pq si no como seria)
---DEBE DE TENER CASE/COALESCE
---asistencias pasa primero por inscripcion y dps por grupo
+--¿Qué devuelve? Porcentaje de asistencias en cada grupo
+--Grain: Cada fila representa un grupo y su periodo
+--Métricas: Promedio de asistencias
 CREATE OR REPLACE VIEW vw_asistencia_por_grupo AS
     SELECT
         g.id as grupo,
@@ -81,8 +79,9 @@ CREATE OR REPLACE VIEW vw_asistencia_por_grupo AS
 SELECT * FROM vw_asistencia_por_grupo;
 
 --VIEW 5
---RANKING POR PROGRAMA Y PERIODO (supongo que de calificaciones)
---DEBE DE TENER RANK() o alguna cosa asi y algo que se llama PARTITION BY creo
+--¿Qué devuelve? Ordena a los alumnos según sus calificaciones
+--Grain: Cada fila representa un estudiante, su programa académico y su periodo
+--Métricas: Promedio y el ranking
 CREATE OR REPLACE VIEW vw_tablero_estudiantes AS
     SELECT
         e.nombre AS estudiante,
